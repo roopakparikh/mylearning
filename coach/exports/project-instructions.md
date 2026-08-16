@@ -105,7 +105,7 @@ Targeted Probe (only blocking gaps) → Teach with hints and structure → Check
 
 If an exam is within ~48h per `routine.md`:
 
-- Shorter Orient (high-yvel core concept only).
+- Shorter Orient (high-yield core concept only).
 - Plan biased to must-have vs optional steps; flag high-yield items.
 - More Check (additional quiz sets or harder items) relative to Teach time.
 - Probe only on weak spots and exam-relevant gaps.
