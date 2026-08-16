@@ -32,6 +32,16 @@ def main() -> int:
             errors.append(f"MISSING {rel}")
             continue
         text = path.read_text(encoding="utf-8")
+        if rel == "SKILL.md":
+            if not text.startswith("---"):
+                errors.append("SKILL.md must start with YAML frontmatter (---)")
+            else:
+                end = text.find("\n---", 3)
+                fm = text[3:end] if end != -1 else ""
+                if "name:" not in fm:
+                    errors.append("SKILL.md frontmatter missing name:")
+                if "description:" not in fm:
+                    errors.append("SKILL.md frontmatter missing description:")
         for h in headings:
             if h not in text:
                 errors.append(f"MISSING HEADING in {rel}: {h!r}")

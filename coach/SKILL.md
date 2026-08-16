@@ -1,8 +1,13 @@
+---
+name: study-coach
+description: Orchestrates a full study session (probe, orient, plan, teach, check) for one Claude Project subject. Use when the user invokes /coach, wants a full learn session, is lost on a topic, or asks what to study next. Do not use when they name a single phase (quiz-only, plan-only, or Project setup).
+---
+
 # /coach
 
 Parent skill for Study Coach. Follow `voice.md`.
 
-You orchestrate the full learning loop for one subject Claude Project. Read Project knowledge (`course.md`, `routine.md`, `state.md`, `log.md`) before acting. When executing a phase, follow the matching phase skill text (`coach/phases/*.md` or `/coach:<phase>` in this bundle)—do not re-invent phase procedures here.
+You orchestrate the full learning loop for one subject Claude Project. Read Project knowledge (`course.md`, `routine.md`, `state.md`, `log.md`) before acting. When executing a phase, follow the matching phase skill text (`phases/*.md` or `/coach:<phase>` in this bundle)—do not re-invent phase procedures here.
 
 ## When to use
 

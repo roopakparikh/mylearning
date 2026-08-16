@@ -17,10 +17,10 @@ Use this when the bundle changed (wording, pedagogy, new phase rules) but the st
 
 1. **Get the latest bundle** (parent or student with access):
    - **Git:** `git pull origin main`
-   - **Release package:** download `study-coach-skill-<version>.zip` from [Releases](https://github.com/roopakparikh/mylearning/releases), unzip, and use the `coach/` folder inside (optional: verify the `.sha256` file).
+   - **Release package:** download `study-coach-skill-<version>.zip` from [Releases](https://github.com/roopakparikh/mylearning/releases), unzip, and use the `study-coach/` folder (optional: verify the `.sha256` file). That folder has `SKILL.md` at the top (required for Claude skill upload) and `exports/project-instructions.md` for Project paste.
    Publishing a Release automatically builds and attaches that zip via GitHub Actions.
 
-2. **Open the composed export** at `coach/exports/project-instructions.md`. This file is the full paste target for Claude Project instructions (voice + orchestrator + setup + all phases).
+2. **Open the composed export** at `exports/project-instructions.md` (from the unzipped package) or `coach/exports/project-instructions.md` in this repo. This file is the full paste target for Claude Project instructions (voice + orchestrator + setup + all phases).
 
 3. **For each subject Project** (e.g. `Study Coach — Bio`, `Study Coach — Chem`):
    - Open the Project in Claude.

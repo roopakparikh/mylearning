@@ -27,11 +27,12 @@ Prefer plain language. Short paragraphs. No jargon without a one-line gloss.
 - Wipe or blank `routine.md` / `state.md` unless the user explicitly confirms a reset.
 
 ---
+
 # /coach
 
 Parent skill for Study Coach. Follow `voice.md`.
 
-You orchestrate the full learning loop for one subject Claude Project. Read Project knowledge (`course.md`, `routine.md`, `state.md`, `log.md`) before acting. When executing a phase, follow the matching phase skill text (`coach/phases/*.md` or `/coach:<phase>` in this bundle)—do not re-invent phase procedures here.
+You orchestrate the full learning loop for one subject Claude Project. Read Project knowledge (`course.md`, `routine.md`, `state.md`, `log.md`) before acting. When executing a phase, follow the matching phase skill text (`phases/*.md` or `/coach:<phase>` in this bundle)—do not re-invent phase procedures here.
 
 ## When to use
 

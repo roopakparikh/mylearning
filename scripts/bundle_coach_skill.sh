@@ -16,6 +16,16 @@ VERSION="${VERSION:-dev}"
 SAFE_VERSION="${VERSION#v}"
 SAFE_VERSION="${SAFE_VERSION//\//-}"
 
+# Strip YAML frontmatter from SKILL.md so Project instructions stay prose-only.
+strip_frontmatter() {
+  awk '
+    BEGIN { fm = 0 }
+    NR == 1 && /^---[[:space:]]*$/ { fm = 1; next }
+    fm == 1 && /^---[[:space:]]*$/ { fm = 0; next }
+    fm == 0 { print }
+  ' "$1"
+}
+
 echo "==> Regenerating coach/exports/project-instructions.md"
 mkdir -p coach/exports
 {
@@ -29,7 +39,7 @@ mkdir -p coach/exports
   cat coach/voice.md
   echo
   echo '---'
-  cat coach/SKILL.md
+  strip_frontmatter coach/SKILL.md
   echo
   echo '---'
   cat coach/setup.md
@@ -50,9 +60,11 @@ STAGING="$(mktemp -d)"
 cleanup() { rm -rf "$STAGING"; }
 trap cleanup EXIT
 
-STAGE_NAME="study-coach-${SAFE_VERSION}"
+# Claude skill upload requires SKILL.md in the top-level folder of the zip
+# (study-coach/SKILL.md), not nested as study-coach/coach/SKILL.md.
+STAGE_NAME="study-coach"
 mkdir -p "$STAGING/$STAGE_NAME"
-cp -R coach "$STAGING/$STAGE_NAME/"
+cp -R coach/. "$STAGING/$STAGE_NAME/"
 cp README.md "$STAGING/$STAGE_NAME/"
 cp docs/how-to-update-skills.md "$STAGING/$STAGE_NAME/"
 
@@ -62,6 +74,12 @@ rm -f "$ARCHIVE"
   cd "$STAGING"
   zip -r "$ARCHIVE" "$STAGE_NAME"
 )
+
+if ! unzip -Z -1 "$ARCHIVE" | grep -qx "${STAGE_NAME}/SKILL.md"; then
+  echo "ERROR: zip must contain ${STAGE_NAME}/SKILL.md at the top of the skill folder" >&2
+  unzip -Z -1 "$ARCHIVE" | grep SKILL.md || true
+  exit 1
+fi
 
 # Checksum next to the zip (useful on the Release page)
 (

@@ -24,7 +24,7 @@ Publishing a [GitHub Release](https://github.com/roopakparikh/mylearning/release
 2. Validates the bundle
 3. Uploads `study-coach-skill-<version>.zip` (and a `.sha256` checksum) as **Release assets**
 
-Download the zip from the release page, unzip, then paste `coach/exports/project-instructions.md` into each Claude Project (see [docs/how-to-update-skills.md](docs/how-to-update-skills.md)).
+Download the zip from the release page, unzip, then paste `exports/project-instructions.md` from the unzipped `study-coach/` folder into each Claude Project (see [docs/how-to-update-skills.md](docs/how-to-update-skills.md)). The same zip is valid for Claude skill upload: `SKILL.md` is at the top of `study-coach/`, with YAML frontmatter.
 
 Build the same zip locally:
 
