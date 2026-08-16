@@ -1,0 +1,43 @@
+name: Release skill bundle
+
+# When a GitHub Release is published, zip the coach/ skill bundle and attach
+# it to that release as a downloadable package (Release asset).
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  bundle-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bundle skill
+        env:
+          COACH_VERSION: ${{ github.event.release.tag_name }}
+        run: |
+          chmod +x scripts/bundle_coach_skill.sh
+          ./scripts/bundle_coach_skill.sh
+
+      - name: Upload package to Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG="${{ github.event.release.tag_name }}"
+          SAFE="${TAG#v}"
+          SAFE="${SAFE//\//-}"
+          ZIP="dist/study-coach-skill-${SAFE}.zip"
+          SUM="dist/study-coach-skill-${SAFE}.zip.sha256"
+          test -f "$ZIP"
+          test -f "$SUM"
+          gh release upload "$TAG" "$ZIP" "$SUM" --clobber
+          echo "Uploaded:"
+          echo "  - $ZIP"
+          echo "  - $SUM"
+          echo "Release: https://github.com/${{ github.repository }}/releases/tag/${TAG}"

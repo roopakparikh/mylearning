@@ -15,11 +15,10 @@ The skill repo never holds live student progress—only blank `_template/` files
 
 Use this when the bundle changed (wording, pedagogy, new phase rules) but the student’s subject Project is already set up.
 
-1. **Pull latest from GitHub** (parent or student with repo access):
-   ```bash
-   git pull origin main
-   ```
-   If you only receive zip exports, download the latest release or pull request merge from GitHub instead.
+1. **Get the latest bundle** (parent or student with access):
+   - **Git:** `git pull origin main`
+   - **Release package:** download `study-coach-skill-<version>.zip` from [Releases](https://github.com/roopakparikh/mylearning/releases), unzip, and use the `coach/` folder inside (optional: verify the `.sha256` file).
+   Publishing a Release automatically builds and attaches that zip via GitHub Actions.
 
 2. **Open the composed export** at `coach/exports/project-instructions.md`. This file is the full paste target for Claude Project instructions (voice + orchestrator + setup + all phases).
 

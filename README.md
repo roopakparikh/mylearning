@@ -15,3 +15,20 @@ python3 scripts/validate_coach_bundle.py
 ```
 
 Expected output: `PASS: coach bundle structure OK`
+
+### Release package
+
+Publishing a [GitHub Release](https://github.com/roopakparikh/mylearning/releases) runs a workflow that:
+
+1. Regenerates `coach/exports/project-instructions.md`
+2. Validates the bundle
+3. Uploads `study-coach-skill-<version>.zip` (and a `.sha256` checksum) as **Release assets**
+
+Download the zip from the release page, unzip, then paste `coach/exports/project-instructions.md` into each Claude Project (see [docs/how-to-update-skills.md](docs/how-to-update-skills.md)).
+
+Build the same zip locally:
+
+```bash
+./scripts/bundle_coach_skill.sh v0.1.0
+# → dist/study-coach-skill-0.1.0.zip
+```
