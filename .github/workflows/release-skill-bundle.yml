@@ -10,12 +10,17 @@ on:
 permissions:
   contents: write
 
+# Prefer Node 24 for JS-based actions (Node 20 is deprecated on Actions runners).
+# See: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   bundle-and-upload:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Bundle skill
         env:
