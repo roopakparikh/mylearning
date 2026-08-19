@@ -1,5 +1,7 @@
 # Study Coach
 
+https://github.com/vasanthsreeram/Alvarmethod
+
 A Claude Projects skill bundle for one-on-one college study coaching: probe the edge of understanding, orient on one core idea, plan a path, teach step-by-step, and check with quizzes. One GitHub repo holds pedagogy (`coach/`); each subject lives in its own Claude Project with personal memory files (`course.md`, `routine.md`, `state.md`, `log.md`).
 
 - **Design spec:** [docs/superpowers/specs/2026-08-16-study-coach-design.md](docs/superpowers/specs/2026-08-16-study-coach-design.md)
